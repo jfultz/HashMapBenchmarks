@@ -1,7 +1,7 @@
 #include "nonius/nonius_single.h++"
 
 extern const char* CUniqueStr(const char* str);
-extern const char* USUniqueStr(const char* str);
+extern const char* USUniqueStr(const char* str, bool new_item);
 
 // Generate a random string of a given length
 std::string RandomAlphaNumericString(int length)
@@ -79,7 +79,7 @@ NONIUS_BENCHMARK("std::unordered_set: Insert", [](nonius::chronometer meter)
 
 	meter.measure([&] {
 		for (auto& str : randomStringTable)
-			USUniqueStr(str.c_str());
+			USUniqueStr(str.c_str(), true);
 	});
 
 	return;
@@ -98,12 +98,12 @@ NONIUS_BENCHMARK("std::unordered_set: Find", [](nonius::chronometer meter)
 
 	// preload the table
 	for (auto& str : randomStringTable)
-		USUniqueStr(str.c_str());
+		USUniqueStr(str.c_str(), true);
 
 	// now time the finds
 	meter.measure([&] {
 		for (auto& str : randomStringTable)
-			USUniqueStr(str.c_str());
+			USUniqueStr(str.c_str(), false);
 	});
 
 	return;

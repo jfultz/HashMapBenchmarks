@@ -31,11 +31,18 @@ template<> struct std::equal_to<const char*>
 
 std::unordered_set<const char*> StringUnorderedSet;
 
-const char* USUniqueStr(const char* str)
+const char* USUniqueStr(const char* str, bool new_item)
 {
 	if(str == nullptr)
 		return nullptr;
 
+	if (new_item)
+	{
+		char* strCopy = (char*) std::malloc(strlen(str) + 1);
+		strcpy(strCopy, str);
+		return *StringUnorderedSet.insert(const_cast<const char*>(strCopy)).first;
+	}
+	
 	const auto it = StringUnorderedSet.find(str);
 	if (it == StringUnorderedSet.end())
 	{
