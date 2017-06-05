@@ -12,9 +12,9 @@ typedef int (*HMEqualFunc)(const void *, const void *);
 class ListNode {
 public:
 	ListNode* next;
-	unsigned long hashVal;	/* result of hashing function */
-	const void* key;		/* key of value */
-	void* val;				/* value of node */
+	unsigned long hashVal;
+	const void* key;
+	void* val;
 };
 
 class CHashMap
@@ -71,7 +71,7 @@ public:
 			node = node->next;
 		}
 
-		return nullptr;			/* not found */
+		return nullptr;
 	}
 
 	void* add(const void* key, const void* val)
@@ -82,7 +82,6 @@ public:
 
 		if ((++nElems) > (resizeFactor * size))
 		{
-			/* resize with an odd size */
 			resize(((int)(growthFactor * size + 0.5)) | 0x1);
 			slot = hashVal % size;
 		}
@@ -98,13 +97,11 @@ public:
 	}
 
 	
-	unsigned long size;						/* size of hash table array */
-	unsigned long nElems;						/* number of elements in hashtable */
-	double resizeFactor;				/* when to resize */
-	double growthFactor;				/* how much to grow during resize*/
-	HMHashFunc hashFn;					/* hash on key */
-	HMEqualFunc equalFn;					/* comparison(key, key) */
-	ListNode** table;					/* head of chain lists */
+	unsigned long size;		/* size of hash table array */
+	unsigned long nElems;	/* number of elements */
+	double resizeFactor;	/* when to resize */
+	double growthFactor;	/* how much to grow during resize*/
+	HMHashFunc hashFn;		/* hash on key */
+	HMEqualFunc equalFn;	/* comparison(key, key) */
+	ListNode** table;		/* head of chain lists */
 };
-
-

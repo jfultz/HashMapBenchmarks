@@ -38,5 +38,3 @@ const char* CUniqueStr(const char* str)
 	}
 	return strFound;
 }
-
-
