@@ -15,3 +15,8 @@ Explanation of what I'm benchmarking and why.  Basically, the I have a `CHashMap
 One optimization in the `CHashMap` side which is certainly was contributing to better insertion performance is the fact that I can determine whether or not the item exists in the hashmap, and if so, make a copy of it and add it unconditionally with no further checks.  I can't think of a way to do this (at least not for this kind of copying) without doing a *second* find in the `unordered_set` case because `unordered_set::insert()` cannot be performed unconditionally...it will always do equality checks.  So, to try to make a more apples-to-apples comparison, I've set up the benchmark to not do the `find` operation when the argument passed in is expected to be new.  This doesn't reflect my need, but it makes reasoning about the differeing timings a bit easier.
 
 To examine the nonius output, I don't recommend spending too much time on the summary view.  The hashmap growth causes too many outliers for that statistical analysis to be useful.  Instead, I recommend switching the dropdown to "samples" and use click-drag to drag out a rectangle to zoom in on to the data (double-click to restore to a full view of the data).
+
+Easy links to open the benchmark data via [htmlpreview.github.com](https://htmlpreview.github.com):
+
+* [VisualStudio2017Release.html](https://htmlpreview.github.io/?https://github.com/jfultz/HashMapBenchmarks/blob/master/VisualStudio2017Release.html)
+* [XcodeClang8.1Release.html](https://htmlpreview.github.io/?https://github.com/jfultz/HashMapBenchmarks/blob/master/XcodeClang8.1Release.html)
