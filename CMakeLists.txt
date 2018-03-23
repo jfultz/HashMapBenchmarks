@@ -17,5 +17,5 @@ if(Boost_FOUND)
 	include_directories("nonius/include")
 	include_directories(${Boost_INCLUDE_DIRS})
 
-	add_executable(HashMapBenchmarks HashMapBenchmarks.cpp StringCMap.cpp StringUnorderedSet.cpp)
+	add_executable(HashMapBenchmarks HashMapBenchmarks.cpp StringCMap.cpp StringUnorderedSet.cpp StringNSet.cpp)
 endif()
